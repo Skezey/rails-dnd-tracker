@@ -1,0 +1,13 @@
+{
+  "short_name": "DnD Character Tracker",
+  "name": "Dungeons and Dragons Character Tracker",
+  "icons": [{
+    "src": "logo512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#222",
+  "theme_color": "#222",
+  "display": "standalone"
+}
