@@ -1,13 +1,12 @@
-import React from 'react';
-import './styles/Footer.css';
+import React from "react";
 
 const Footer = () => (
-  <div className="footer">
-    <ul>
-      <li><a href="/privacy">Privacy Poilicy</a></li>
-      <li><a href="/contact">Contact Us</a></li>
-    </ul>
-  </div>
-)
+  <footer className="bg-light p-3 text-center">
+    <div className="logo" />
+    <p>
+      Sample project provided by <a href="https://auth0.com">Auth0</a>
+    </p>
+  </footer>
+);
 
 export default Footer;
