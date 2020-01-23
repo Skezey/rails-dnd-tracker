@@ -63,6 +63,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
+    dalli (2.7.10)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
@@ -163,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  dalli
   dotenv (~> 0.11.1)
   jwt
   listen (>= 3.0.5, < 3.2)
