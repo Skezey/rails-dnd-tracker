@@ -1,6 +1,4 @@
-require 'rails/application_controller'
-
-class StaticController < Rails::ApplicationController
+class StaticController < ApplicationController
   layout false
 
   def index
