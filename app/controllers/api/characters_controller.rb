@@ -1,4 +1,3 @@
-require 'pry'
 class Api::CharactersController < ApplicationController
   def index
     render json: Characters.all

@@ -5,10 +5,9 @@ class User < ApplicationRecord
   has_many :characters
 
   def self.create_from_token(token)
-    t = JsonWebToken.verify(token)
      # Creates a new user only if it doesn't exist
-     where(uid: t['sub']).first_or_initialize do |user|
-         user.uid = t['sub']
+     where(uid: token['sub']).first_or_initialize do |user|
+         user.uid = token['sub']
      end
    end
 end
