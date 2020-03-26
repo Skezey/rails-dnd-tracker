@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -12,13 +12,17 @@ gem 'puma', '~> 4.1'
 gem 'rack-cors'
 
 gem 'jwt'
-gem 'pry-rails'
+gem 'pry-rails', '~> 0.3.9'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dalli'
+gem 'omniauth-auth0'
+gem 'omniauth-rails_csrf_protection'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker'
 end
 
 group :development do

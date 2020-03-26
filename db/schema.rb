@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_111717) do
+ActiveRecord::Schema.define(version: 2020_01_23_105713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attributes", force: :cascade do |t|
+    t.integer "stength"
+    t.integer "constitution"
+    t.integer "defense"
+    t.integer "dexterity"
+    t.integer "intelligence"
+    t.integer "charisma"
+    t.integer "wisdom"
+    t.integer "willpower"
+    t.integer "perception"
+    t.integer "luck"
+    t.bigint "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_attributes_on_character_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "race"
+    t.string "class"
+    t.integer "level"
+    t.string "alignment"
+    t.string "back_story"
+    t.string "traits"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -24,4 +55,6 @@ ActiveRecord::Schema.define(version: 2020_01_22_111717) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "attributes", "characters"
+  add_foreign_key "characters", "users"
 end
