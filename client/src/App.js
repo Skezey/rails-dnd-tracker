@@ -11,7 +11,9 @@ import Profile from "./views/Profile";
 import ExternalApi from "./views/ExternalApi";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
-import CharacterIndex from './components/characters/CharacterIndex'
+import CharacterIndex from './components/characters/CharacterIndex';
+import CharacterShow from './components/characters/CharacterShow';
+import NoMatch from './components/shared/NoMatch';
 
 // styles
 import "./App.css";
@@ -37,6 +39,8 @@ const App = () => {
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/external-api" component={ExternalApi} />
             <PrivateRoute path="/characters" component={CharacterIndex} />
+            <PrivateRoute path="/characters/:id" component={CharacterShow} />
+            <Route component={NoMatch} />
           </Switch>
         </Container>
         <Footer />

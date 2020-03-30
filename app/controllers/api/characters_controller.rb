@@ -1,5 +1,3 @@
-require 'pry'
-
 class Api::CharactersController < ApplicationController
   include Secured
 
