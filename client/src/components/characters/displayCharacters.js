@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class DisplayCharacters extends Component {
+
+  state = {characters: [], token: ''}
+
   componentDidMount() {
     const { token } = this.props
     token
@@ -21,9 +24,20 @@ class DisplayCharacters extends Component {
       })
   }
 
+  renderCharacters = () => {
+    const { characters } = this.state
+    return characters.map(character =>
+      <div key={character.id}>
+          <p>{character.name}</p>
+      </div>
+    )
+  }
+
 	render() {
 		return(
-      <div></div>
+      <div>
+        {this.renderCharacters()}
+      </div>
     )
 	}
 
