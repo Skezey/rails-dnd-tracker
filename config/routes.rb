@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
 
   namespace :api do
-    resources :characters
+    resources :characters do
+      resources :attributes
+    end
 
   end
 

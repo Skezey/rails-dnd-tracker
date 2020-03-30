@@ -19,8 +19,8 @@ module Secured
   def authenticate_request!
     @auth_payload, @auth_header = auth_token
 
-    user = User.create_from_token(@auth_payload)
-    user.save!
+    @user = User.create_from_token(@auth_payload)
+    @user.save!
 
     render json: { errors: ['Insufficient scope'] }, status: :forbidden unless scope_included
   rescue JWT::VerificationError, JWT::DecodeError

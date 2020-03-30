@@ -11,6 +11,7 @@ import Profile from "./views/Profile";
 import ExternalApi from "./views/ExternalApi";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
+import CharacterIndex from './components/characters/CharacterIndex'
 
 // styles
 import "./App.css";
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/external-api" component={ExternalApi} />
+            <PrivateRoute path="/characters" component={CharacterIndex} />
           </Switch>
         </Container>
         <Footer />

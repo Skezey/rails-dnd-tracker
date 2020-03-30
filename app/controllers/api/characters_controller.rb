@@ -1,34 +1,45 @@
+require 'pry'
+
 class Api::CharactersController < ApplicationController
+  include Secured
+
   def index
-    render json: Characters.all
+    render json: @user.characters.all
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
-      render json: @post
+    @character = @user.characters.new(character_params)
+    if @character.save
+      render json: @character
     else
-      render json: { errors: @post.errors }, status: :unprocessable_entity
+      render json: { errors: @character.errors }, status: :unprocessable_entity
     end
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
-      render json: @post
+    @character = @user.characters.find(params[:id])
+    if @character.update(character_params)
+      render json: @character
     else
-      render json: { errors: @post.errors }, status: :unprocessable_entity
+      render json: { errors: @character.errors }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    Post.find(params[:id]).destroy
-    render json: { message: 'post deleted'}
+    @character.find(params[:id]).destroy
+    render json: { message: 'character deleted'}
   end
 
   private
-  def post_params
-    # { post: {title: '', body: ''} }
-    params.require(:post).permit(:title, :body)
+  def character_params
+    params.require(:character).permit(:name,
+                                      :race,
+                                      :class,
+                                      :level,
+                                      :alignment,
+                                      :back_story,
+                                      :traits
+                                    )
   end
+
 end

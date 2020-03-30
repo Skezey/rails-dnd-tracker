@@ -1,6 +1,3 @@
-require_relative '../../lib/json_web_token.rb'
-require 'jwt'
-
 class User < ApplicationRecord
   has_many :characters
 
