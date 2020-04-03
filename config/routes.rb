@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :characters do
       resources :attributes
     end
-
+    resources :memberships
+    resources :parties
   end
 
   get '*other', to: 'static#index'

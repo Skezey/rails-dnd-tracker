@@ -7,9 +7,8 @@ class DisplayCharacters extends Component {
   state = {characters: [], token: ''}
 
   componentDidMount() {
-    const { token } = this.props
-    token
-    .then(res=>
+    const { p } = this.props
+    p.then(res=>
       {
         this.setState({token: res}, function (){
           axios.get('/api/characters', {

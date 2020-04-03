@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from 'axios';
 
 import {
   Collapse,
@@ -39,6 +38,8 @@ const NavBar = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
+            {/* Non-authenticated links */}
+            <>
               <NavItem>
                 <NavLink
                   tag={RouterNavLink}
@@ -49,6 +50,18 @@ const NavBar = () => {
                   Home
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/roll"
+                  exact
+                  activeClassName="router-link-exact-active"
+                >
+                  Dice
+                </NavLink>
+              </NavItem>
+              </>
+              {/* authenticated links */}
               {isAuthenticated && (
                 <>
                 <NavItem>

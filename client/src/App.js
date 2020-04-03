@@ -14,6 +14,7 @@ import history from "./utils/history";
 import CharacterIndex from './components/characters/CharacterIndex';
 import CharacterShow from './components/characters/CharacterShow';
 import NoMatch from './components/shared/NoMatch';
+import DiceRoll from './components/shared/DiceRoll';
 
 // styles
 import "./App.css";
@@ -38,8 +39,9 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/external-api" component={ExternalApi} />
-            <PrivateRoute path="/characters" component={CharacterIndex} />
-            <PrivateRoute path="/characters/:id" component={CharacterShow} />
+            <PrivateRoute exact path="/characters" component={CharacterIndex} />
+            <PrivateRoute exact path="/characters/:id" component={CharacterShow} />
+            <PrivateRoute path="/roll" component={DiceRoll} />
             <Route component={NoMatch} />
           </Switch>
         </Container>

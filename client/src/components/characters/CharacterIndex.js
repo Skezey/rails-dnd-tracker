@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useAuth0 } from "../../react-auth0-spa";
-import Highlight from "../Highlight";
 import DisplayCharacters from './displayCharacters'
 
 
@@ -12,7 +10,7 @@ const CharacterIndex = () => {
     <>
       <div className="mb-5">
         <h1>Characters</h1>
-          <DisplayCharacters token={token}/>
+          <DisplayCharacters p={token}/>
       </div>
     </>
   );

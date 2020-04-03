@@ -14,6 +14,15 @@ class Api::CharactersController < ApplicationController
     end
   end
 
+  def show
+    @character = @user.characters.find(params[:id])
+    if @character
+      render json: @character
+    else
+      render json: { errors: @character.errors }, status: :unprocessable_entity
+    end
+  end
+
   def update
     @character = @user.characters.find(params[:id])
     if @character.update(character_params)
@@ -29,6 +38,7 @@ class Api::CharactersController < ApplicationController
   end
 
   private
+
   def character_params
     params.require(:character).permit(:name,
                                       :race,
