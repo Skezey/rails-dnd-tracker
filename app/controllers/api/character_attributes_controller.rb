@@ -1,6 +1,4 @@
-class Api::CharactersAttributesController < ApplicationController
-  include Secured
-
+class Api::CharacterAttributesController < ApplicationController
   before_action :set_character
 
   def index
