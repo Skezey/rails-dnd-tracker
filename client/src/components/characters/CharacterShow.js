@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Auth0Consumer } from "../../react-auth0-spa";
+import { Tab } from 'semantic-ui-react'
+
+import CharacterAttributes from './CharacterAttributes'
 
 class CharacterShow extends Component {
-  state = { character: [], token: '' }
+  state = { attributes: [], character: [], token: '' }
 
   componentDidMount(){
     const { auth: { getTokenSilently } } = this.props
@@ -22,14 +25,20 @@ class CharacterShow extends Component {
           });
         })
       })
+      axios.get(`/api/characters/${this.props.match.params.id}/character_attributes`)
+      .then(res => {
+        this.setState({ attributes: res.data });
+      })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
-	render() {
+  renderOverview = () => {
     const { character } = this.state
 		return(
         //// TODO: GraphQL
       <div>
-        <h1>Character Show</h1>
         <ul>
           <li>
             {character.name}
@@ -54,6 +63,25 @@ class CharacterShow extends Component {
           </li>
         </ul>
       </div>
+    )
+  }
+
+  renderTabs = () => {
+    const panes = [
+      { menuItem: 'Overview', render: () => <Tab.Pane>{this.renderOverview()}</Tab.Pane> },
+      { menuItem: 'Items', render: () => <Tab.Pane>Items</Tab.Pane> },
+      { menuItem: 'Skills', render: () => <Tab.Pane><CharacterAttributes attributes={this.state.attributes}/></Tab.Pane> },
+      { menuItem: 'Spells', render: () => <Tab.Pane>Spells</Tab.Pane> },
+    ]
+    return <Tab panes={panes} />
+  }
+
+	render() {
+		return(
+        <div>
+          <h1>{this.state.character.name}</h1>
+          {this.renderTabs()}
+        </div>
     )
 	}
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { Card, Grid } from 'semantic-ui-react';
 
 class DisplayCharacters extends Component {
 
@@ -26,8 +27,10 @@ class DisplayCharacters extends Component {
 
   renderCharacters = () => {
     const { characters } = this.state
-    return characters.map(character =>
-      <div key={character.id}>
+    return(
+      <Grid>
+      {characters.map(character =>
+      <Card key={character.id}>
       <hr/>
       <Link
           to={{
@@ -37,8 +40,10 @@ class DisplayCharacters extends Component {
           <p>{character.name}</p>
       </Link>
       <hr/>
-      </div>
-    )
+      </Card>
+    )}
+    </Grid>
+  )
   }
 
 	render() {
