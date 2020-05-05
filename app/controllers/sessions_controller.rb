@@ -1,16 +1,26 @@
+require 'pry'
+require_relative '/../../lib/json_web_token.rb'
+
 class SessionsController < ApplicationController
-  skip_before_action :require_user
+
+  def http_token
+    if request.headers['Authorization'].present?
+      request.headers['Authorization'].split(' ').last
+    end
+  end
+
+  def auth_token
+    JsonWebToken.verify(http_token)
+  end
 
   def create
-    # Get access tokens from the google server
     access_token = http_token
     user = User.create_from_token(access_token)
     user.save!
-
     #create cookie after user is made
-    cookies.encrypted[:current_user_id] = { value: user.id, expires: Time.now + 7.days }
+    # cookies.encrypted[:current_user_id] = { value: user.id, expires: Time.now + 7.days }
 
-    redirect_to root_path
+    puts 'fuck this auth bullshit'
   end
 
   def destroy
